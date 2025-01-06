@@ -1,0 +1,46 @@
+@import '@/assets/styles/fonts.css';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Inter', 'sans-serif';
+    line-height: 1.5;
+    background-color: #fff;
+    color: #232323;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a,
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}

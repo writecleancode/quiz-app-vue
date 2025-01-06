@@ -1,0 +1,19 @@
+import { createRouter, createWebHistory } from 'vue-router';
+
+import MainView from '../views/MainView.vue';
+import CountriesOfEurope from '@/views/Quizes/CountriesOfEurope.vue';
+
+const basePath = import.meta.env.VITE_BASE_PATH;
+
+const routes = [
+	{ path: '/', component: MainView },
+	{ path: '/quiz/panstwa-europy', component: CountriesOfEurope },
+	{ path: '/quiz/rozpoznaj-logo', component: CountriesOfEurope },
+	{ path: '/quiz/znajomosc-filmow', component: CountriesOfEurope },
+	{ path: '/quiz/prawo-jazdy', component: CountriesOfEurope },
+];
+
+export const router = createRouter({
+	history: createWebHistory(basePath),
+	routes,
+});
