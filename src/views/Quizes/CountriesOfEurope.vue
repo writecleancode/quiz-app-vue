@@ -8,6 +8,7 @@ import { basePath } from '@/utils/base-path';
 import { quizzes } from '@/data/quizzes';
 import { countriesList as quizData } from '@/data/coutriesOfEurope';
 import { onMounted, ref, watch } from 'vue';
+import { useModal } from '@/composables/useModal';
 
 const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds
@@ -50,6 +51,7 @@ export default {
 		const isMapDisplayed = ref(true);
 		const coutriesWithStatus = ref(prepareCoutriesList());
 		const coutriesToDisplay = ref(divideCoutriesList(coutriesWithStatus.value));
+		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
 		const setInputValue = value => {
 			inputValue.value = value;
@@ -78,7 +80,7 @@ export default {
 		const handleEndQuiz = () => {
 			isQuizFinished.value = true;
 			clearInterval(interval);
-			// handleDisplayScore();
+			handleOpenModal();
 			if (guessedCoutriesNumber.value !== coutriesNumber) secondsTotal.value = 0;
 		};
 
@@ -103,7 +105,7 @@ export default {
 		watch(secondsTotal, () => {
 			timeLeft.value = timeLeftText(secondsTotal.value);
 
-			if (secondsTotal.value <= 0 && !isQuizFinished) handleEndQuiz();
+			if (secondsTotal.value <= 0 && !isQuizFinished.value) handleEndQuiz();
 			if (secondsTotal.value >= maxTime) secondsTotal.value = maxTime;
 		});
 
@@ -137,6 +139,8 @@ export default {
 			handleEndQuiz,
 			handleExtendTime,
 			toggleMapVisibility,
+			isModalOpen,
+			closeModal,
 		};
 	},
 };
@@ -201,7 +205,12 @@ export default {
 		</div>
 	</QuizWrapper>
 	<LoadingGif v-else />
-	<ScoreModal :isOpen="true" :userScore="guessedCoutriesNumber" :totalScore="coutriesNumber" :handleCloseModal="() => console.log('zamykam modal')" />
+	<ScoreModal
+		v-if="isModalOpen"
+		:isOpen="isModalOpen"
+		:userScore="guessedCoutriesNumber"
+		:totalScore="coutriesNumber"
+		:handleCloseModal="closeModal" />
 </template>
 
 <style lang="scss" scoped>

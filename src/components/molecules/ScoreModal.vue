@@ -30,20 +30,22 @@ export default {
 </script>
 
 <template>
-	<div class="score-modal-wrapper">
-		<p class="score-title">Twój wynik</p>
-		<p class="score-text">{{ userScore }} / {{ totalScore }}</p>
-		<div class="buttons-wrapper">
-			<RouterLink :to="`${basePath}/`" class="back-btn" aria-label="Powrót do wyboru quizów">
-				<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
-				<span class="back-btn__text}">Powrót</span>
-			</RouterLink>
-			<button class="close-btn" @click="handleCloseModal" aria-label="Powrót do wyboru quizów">
-				<span class="close-btn__text">Zamknij</span>
-				<img :src="`${basePath}/icons/x-circle.svg`" alt="" />
-			</button>
+	<teleport to="body">
+		<div class="score-modal-wrapper">
+			<p class="score-title">Twój wynik</p>
+			<p class="score-text">{{ userScore }} / {{ totalScore }}</p>
+			<div class="buttons-wrapper">
+				<RouterLink :to="`${basePath}/`" class="back-btn" aria-label="Powrót do wyboru quizów" id="go-back-btn">
+					<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
+					<span class="back-btn__text}">Powrót</span>
+				</RouterLink>
+				<button class="close-btn" @click="handleCloseModal" aria-label="Powrót do wyboru quizów">
+					<span class="close-btn__text">Zamknij</span>
+					<img :src="`${basePath}/icons/x-circle.svg`" alt="" />
+				</button>
+			</div>
 		</div>
-	</div>
+	</teleport>
 </template>
 
 <style lang="scss" scoped>
