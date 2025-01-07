@@ -124,10 +124,10 @@ export default {
 						<ControlProgressButtons
 							:previousButton="'Poprzednie pytanie'"
 							:nextButton="questionsData[questionIndex].hasUserAnswered ? 'Następne pytanie' : 'Sprawdzam!'"
-							:showCorrectAnswers="showCorrectAnswers"
-							:handleChangeQuestion="handleChangeQuestion"
-							:isFirstQuestion="isFirstQuestion"
-							:isLastQuestion="isLastQuestion" />
+							:showCorrectAnswers
+							:handleChangeQuestion
+							:isFirstQuestion
+							:isLastQuestion />
 					</div>
 				</div>
 			</div>
