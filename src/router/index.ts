@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import MainView from '../views/MainView.vue';
 import CountriesOfEurope from '@/views/Quizes/CountriesOfEurope.vue';
+import DrivingLicense from '@/views/Quizes/DrivingLicense.vue';
 
 const basePath = import.meta.env.VITE_BASE_PATH;
 
@@ -10,7 +11,7 @@ const routes = [
 	{ path: '/quiz/panstwa-europy', component: CountriesOfEurope },
 	{ path: '/quiz/rozpoznaj-logo', component: CountriesOfEurope },
 	{ path: '/quiz/znajomosc-filmow', component: CountriesOfEurope },
-	{ path: '/quiz/prawo-jazdy', component: CountriesOfEurope },
+	{ path: '/quiz/prawo-jazdy', component: DrivingLicense },
 ];
 
 export const router = createRouter({

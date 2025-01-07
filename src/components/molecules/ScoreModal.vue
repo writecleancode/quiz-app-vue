@@ -31,18 +31,20 @@ export default {
 
 <template>
 	<teleport to="body">
-		<div class="score-modal-wrapper">
-			<p class="score-title">Twój wynik</p>
-			<p class="score-text">{{ userScore }} / {{ totalScore }}</p>
-			<div class="buttons-wrapper">
-				<RouterLink :to="`${basePath}/`" class="back-btn" aria-label="Powrót do wyboru quizów" id="go-back-btn">
-					<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
-					<span class="back-btn__text}">Powrót</span>
-				</RouterLink>
-				<button class="close-btn" @click="handleCloseModal" aria-label="Powrót do wyboru quizów">
-					<span class="close-btn__text">Zamknij</span>
-					<img :src="`${basePath}/icons/x-circle.svg`" alt="" />
-				</button>
+		<div class="modal-overlay">
+			<div class="score-modal-wrapper">
+				<p class="score-title">Twój wynik</p>
+				<p class="score-text">{{ userScore }} / {{ totalScore }}</p>
+				<div class="buttons-wrapper">
+					<RouterLink :to="`${basePath}/`" class="back-btn" aria-label="Powrót do wyboru quizów" id="go-back-btn">
+						<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
+						<span class="back-btn__text}">Powrót</span>
+					</RouterLink>
+					<button class="close-btn" @click="handleCloseModal" aria-label="Powrót do wyboru quizów">
+						<span class="close-btn__text">Zamknij</span>
+						<img :src="`${basePath}/icons/x-circle.svg`" alt="" />
+					</button>
+				</div>
 			</div>
 		</div>
 	</teleport>
@@ -51,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 @use '@/assets/styles/variables' as *;
 
-@keyframes slideUp {
+@keyframes slide-up {
 	0% {
 		opacity: 0;
 		translate: -50% -55%;
@@ -61,6 +63,12 @@ export default {
 		opacity: 1;
 		translate: -50% -50%;
 	}
+}
+
+.modal-overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(255, 255, 255, 0.62);
 }
 
 .score-modal-wrapper {
@@ -76,7 +84,7 @@ export default {
 	text-align: center;
 	opacity: 1;
 
-	animation: slideUp 0.5s forwards;
+	animation: slide-up 0.5s forwards;
 }
 
 .score-title {
