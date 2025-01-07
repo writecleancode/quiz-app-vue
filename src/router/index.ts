@@ -14,6 +14,7 @@ const routes = [
 	{ path: '/quiz/rozpoznaj-logo', component: RecognizeLogo },
 	{ path: '/quiz/znajomosc-filmow', component: KnowledgeOfMovies },
 	{ path: '/quiz/prawo-jazdy', component: DrivingLicense },
+	{ path: '/:pathPatch(.*)*', redirect: '/' },
 ];
 
 export const router = createRouter({
