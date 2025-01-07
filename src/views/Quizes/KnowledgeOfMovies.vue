@@ -8,7 +8,7 @@ import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
 import { quizzes } from '@/data/quizzes';
 import { questionsData as quizData } from '@/data/knowledgeOfMovies';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { basePath } from '@/utils/base-path';
 import cloneDeep from 'lodash.clonedeep';
 import { useModal } from '@/composables/useModal';
@@ -75,19 +75,19 @@ export default {
 			questionsData.value = cloneDeep(quizData);
 		});
 
-		// useEffect(() => {
-		// if (
-		// questionsData.length &&
-		// questionsData[questionIndex].answersData.every(answer => answer.hasUserGuessed === true) &&
-		// questionsData[questionIndex].hasUserAnswered === false
-		// ) {
-		// showCorrectAnswers();
-		// }
-		// }, [questionsData]);
+		watch(questionsData, () => {
+			if (
+				questionsData.value.length &&
+				questionsData.value[questionIndex.value].answersData.every(answer => answer.hasUserGuessed === true) &&
+				questionsData.value[questionIndex.value].hasUserAnswered === false
+			) {
+				showCorrectAnswers();
+			}
+		});
 
-		// useEffect(() => {
-		// if (userScore >= maxScore) handleOpenModal();
-		// }, [userScore]);
+		watch(userScore, () => {
+			if (userScore.value >= maxScore) handleOpenModal();
+		});
 
 		return {
 			quizzes,
