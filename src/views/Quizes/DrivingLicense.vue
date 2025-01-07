@@ -6,12 +6,13 @@ import ControlProgressButtons from '@/components/molecules/ControlProgressButton
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
-import cloneDeep from 'lodash.clonedeep';
+import type { DrivingLicenseQuestionDataType } from '@/types/types';
 import { quizzes } from '@/data/quizzes';
 import { questionsData as quizData } from '@/data/drivingLicense';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useModal } from '@/composables/useModal';
+import cloneDeep from 'lodash.clonedeep';
 
 const maxScore = quizData.length;
 
@@ -26,7 +27,7 @@ export default {
 	},
 
 	setup() {
-		const questionsData = ref([]);
+		const questionsData = ref<DrivingLicenseQuestionDataType[]>([]);
 		const questionIndex = ref(0);
 		const userScore = ref(0);
 		const isFirstQuestion = computed(() => questionIndex.value <= 0);

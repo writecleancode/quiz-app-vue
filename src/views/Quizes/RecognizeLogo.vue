@@ -6,6 +6,7 @@ import ControlProgressButtons from '@/components/molecules/ControlProgressButton
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
+import type { RecognizeLogoQuestionDataType } from '@/types/types';
 import { questionsData as quizData } from '@/data/recognizeLogo';
 import { quizzes } from '@/data/quizzes';
 import { basePath } from '@/utils/base-path';
@@ -26,16 +27,16 @@ export default {
 	},
 
 	setup() {
-		const questionsData = ref([]);
+		const questionsData = ref<RecognizeLogoQuestionDataType[]>([]);
 		const questionIndex = ref(0);
-		const givenAnswersIndexes = ref([]);
+		const givenAnswersIndexes = ref<number[]>([]);
 		const isQuizFinished = ref(false);
 		const userScore = ref(0);
 		const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
 		const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
 		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-		const handleAnswersStatus = clickedCorrectAnswer => {
+		const handleAnswersStatus = (clickedCorrectAnswer: boolean) => {
 			if (givenAnswersIndexes.value.includes(questionIndex.value)) return;
 			givenAnswersIndexes.value.push(questionIndex.value);
 
@@ -83,7 +84,7 @@ export default {
 			handleAnswersStatus,
 			handleChangeQuestion,
 			isModalOpen,
-            closeModal,
+			closeModal,
 		};
 	},
 };

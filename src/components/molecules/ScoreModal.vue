@@ -1,5 +1,6 @@
 <script lang="ts">
 import { basePath } from '@/utils/base-path';
+import type { PropType } from 'vue';
 
 export default {
 	props: {
@@ -16,7 +17,7 @@ export default {
 			required: true,
 		},
 		handleCloseModal: {
-			type: Function,
+			type: Function as PropType<() => void>,
 			required: true,
 		},
 	},

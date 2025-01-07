@@ -4,6 +4,7 @@ import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import QuizHeader from '@/components/molecules/QuizHeader.vue';
 import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
+import type { CountryType } from '@/types/types';
 import { basePath } from '@/utils/base-path';
 import { quizzes } from '@/data/quizzes';
 import { countriesList as quizData } from '@/data/coutriesOfEurope';
@@ -12,7 +13,7 @@ import { useModal } from '@/composables/useModal';
 
 const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds
-let interval;
+let interval: number;
 
 const timeLeftText = (secondsTotal = initialTime) => {
 	const minutes = Math.floor(secondsTotal / 60);
@@ -23,7 +24,7 @@ const timeLeftText = (secondsTotal = initialTime) => {
 
 const prepareCoutriesList = () => quizData.map(country => ({ name: country, isGuessed: false }));
 
-const divideCoutriesList = coutriesToDivide => {
+const divideCoutriesList = (coutriesToDivide: CountryType[]) => {
 	return {
 		firstHalf: coutriesToDivide.slice(0, Math.ceil(coutriesToDivide.length / 2)),
 		secondHalf: coutriesToDivide.slice(Math.ceil(coutriesToDivide.length / 2)),
@@ -41,7 +42,7 @@ export default {
 	},
 
 	setup() {
-		const countriesList = ref([]);
+		const countriesList = ref<string[]>([]);
 		const hasQuizStarted = ref(false);
 		const inputValue = ref('');
 		const guessedCoutriesNumber = ref(0);
@@ -53,8 +54,8 @@ export default {
 		const coutriesToDisplay = ref(divideCoutriesList(coutriesWithStatus.value));
 		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-		const setInputValue = value => {
-			inputValue.value = value;
+		const handleInputChange = (e: Event) => {
+			inputValue.value = (e.target as HTMLInputElement).value;
 		};
 
 		const handleStartQuiz = () => {
@@ -84,7 +85,7 @@ export default {
 			if (guessedCoutriesNumber.value !== coutriesNumber) secondsTotal.value = 0;
 		};
 
-		const handleExtendTime = secondsToExtend => (secondsTotal.value += secondsToExtend);
+		const handleExtendTime = (secondsToExtend: number) => (secondsTotal.value += secondsToExtend);
 
 		const toggleMapVisibility = () => {
 			isMapDisplayed.value = !isMapDisplayed.value;
@@ -135,7 +136,7 @@ export default {
 			isMapDisplayed,
 			coutriesToDisplay,
 			handleStartQuiz,
-			setInputValue,
+			handleInputChange,
 			handleEndQuiz,
 			handleExtendTime,
 			toggleMapVisibility,
@@ -156,7 +157,7 @@ export default {
 					<input
 						class="form-field__input"
 						:value="inputValue"
-						@input="setInputValue($event.target.value)"
+						@input="handleInputChange($event)"
 						:disabled="isQuizFinished"
 						type="text"
 						id="country"

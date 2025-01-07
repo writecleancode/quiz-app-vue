@@ -6,14 +6,15 @@ import ControlProgressButtons from '@/components/molecules/ControlProgressButton
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
+import type { KnowledgeOfMoviesQuestionDataType } from '@/types/types';
 import { quizzes } from '@/data/quizzes';
 import { questionsData as quizData } from '@/data/knowledgeOfMovies';
 import { computed, onMounted, ref, watch } from 'vue';
 import { basePath } from '@/utils/base-path';
-import cloneDeep from 'lodash.clonedeep';
 import { useModal } from '@/composables/useModal';
+import cloneDeep from 'lodash.clonedeep';
 
-const initialFormValues = {
+const initialFormValues: Record<string, string> = {
 	answer1: '',
 	answer2: '',
 	answer3: '',
@@ -34,7 +35,7 @@ export default {
 	},
 
 	setup() {
-		const questionsData = ref([]);
+		const questionsData = ref<KnowledgeOfMoviesQuestionDataType[]>([]);
 		const questionIndex = ref(0);
 		const inputValues = ref(initialFormValues);
 		const userScore = ref(0);
@@ -42,10 +43,11 @@ export default {
 		const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
 		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-		const handleInputChange = (e, { id, acceptableAnswers }, index) => {
-			inputValues.value[id] = e.target.value;
+		const handleInputChange = (e: Event, { id, acceptableAnswers }: { id: string; acceptableAnswers: string[] }, index: number) => {
+			const target = e.target as HTMLInputElement;
+			inputValues.value[id] = target.value;
 
-			if (acceptableAnswers.some(answer => answer.toLowerCase() === e.target.value.toLowerCase())) {
+			if (acceptableAnswers.some(answer => answer.toLowerCase() === target.value.toLowerCase())) {
 				questionsData.value[questionIndex.value].answersData[index].hasUserGuessed =
 					!questionsData.value[questionIndex.value].answersData[index].hasUserGuessed;
 

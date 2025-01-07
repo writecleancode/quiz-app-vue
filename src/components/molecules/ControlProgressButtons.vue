@@ -1,5 +1,6 @@
 <script lang="ts">
 import { basePath } from '@/utils/base-path';
+import type { PropType } from 'vue';
 
 export default {
 	props: {
@@ -11,11 +12,12 @@ export default {
 		},
 
 		showCorrectAnswers: {
-			type: Function,
+			type: Function as PropType<() => void>,
 		},
 
 		handleChangeQuestion: {
 			type: Function,
+			required: true,
 		},
 		isFirstQuestion: {
 			type: Boolean,
@@ -38,7 +40,7 @@ export default {
 		<img :src="`${basePath}/icons/caret-left-fill.svg`" alt="" />
 		<span>{{ previousButton }}</span>
 	</button>
-	<button v-if="nextButton === 'Sprawdzam!'" class="next-question-btn" @click="() => showCorrectAnswers()" data-last="false">
+	<button v-if="nextButton === 'Sprawdzam!'" class="next-question-btn" @click="showCorrectAnswers" data-last="false">
 		<span>{{ nextButton }}</span>
 	</button>
 	<button v-else class="next-question-btn" @click="handleChangeQuestion('next')" :data-last="isLastQuestion ? 'true' : 'false'">
