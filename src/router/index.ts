@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import MainView from '../views/MainView.vue';
+import MainView from '@/views/MainView.vue';
 import CountriesOfEurope from '@/views/Quizes/CountriesOfEurope.vue';
 import RecognizeLogo from '@/views/Quizes/RecognizeLogo.vue';
 import KnowledgeOfMovies from '@/views/Quizes/KnowledgeOfMovies.vue';
