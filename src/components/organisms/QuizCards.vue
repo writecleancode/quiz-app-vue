@@ -1,7 +1,7 @@
 <script lang="ts">
-import { quizzes } from '@/data/quizzes';
-
 import QuizCard from '@/components/molecules/QuizCard.vue';
+
+import { quizzes } from '@/data/quizzes';
 
 export default {
 	components: {
