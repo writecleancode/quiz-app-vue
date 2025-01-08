@@ -2,6 +2,8 @@
 import QuizCard from '@/components/molecules/QuizCard.vue';
 
 import { quizzes } from '@/data/quizzes';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
 	components: {
@@ -9,6 +11,18 @@ export default {
 	},
 
 	setup() {
+		const router = useRouter();
+
+		onMounted(async () => {
+			let path = localStorage.getItem('path');
+			if (path) {
+				await router.isReady();
+				localStorage.removeItem('path');
+				console.log(`/${path}`);
+				router.push(`/${path}`);
+			}
+		});
+
 		return {
 			quizzes,
 		};
