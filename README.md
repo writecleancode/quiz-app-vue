@@ -1,33 +1,126 @@
-# quiz-app-vue
+# # ![My Skills](https://skillicons.dev/icons?i=vue) Quiz App (Vue)
 
-This template should help get you started developing with Vue 3 in Vite.
+🌐 [**LIVE DEMO**](https://writecleancode.github.io/quiz-app-vue/)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
+Quiz App - **relax** between checking dozens (hundreds?) of CVs. **4 different quizzes** to choose from. Enjoy! 😃
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+# Table of contents
 
-## Project Setup
+1. [General info](#general-info)
 
-```sh
+2. [Technologies](#technologies)
+
+3. [Setup](#setup)
+
+4. [Application View](application-view)
+
+
+
+## GENERAL INFO
+
+The application was intended to be something other than just a simple project for recruiters to click through. The idea was for it to be a “springboard,” a little entertainment, a form of relaxation.
+
+[Click to see repo of this app written with **React**](https://github.com/writecleancode/quiz-app)
+
+The app was written based on a mobile-first approach and it's fully responsive 📱💻🖥
+
+Accessibility is at a high level ♿
+
+The app has it's own favicon ⚡
+
+Lines of code rewritten from tutorials: 0 ✔
+
+The layout was designed by me in Figma 🖍
+
+All photos have been cropped and their size has been reduced accordingly (to minimize file size) 🖼✂
+
+
+
+## TECHNOLOGIES
+
+1. Vite
+
+2. Typescript
+
+3. Vue
+
+    - Vue Router
+
+
+4. Figma
+
+---
+
+More accurate informations about technologies used
+
+Build tool:
+- **Vite**
+
+Language:
+- **Typescript**
+
+Framework:
+- **Vue**
+
+Vue libraries used:
+- **Vue Router**
+
+Styles:
+- **SCSS**
+
+Components structure:
+- **Atomic Design**
+
+Designed with:
+- **Figma**
+
+Images editing:
+- **GIMP**
+
+
+## SETUP
+
+1. Clone the repository:
+
+```
+git clone https://github.com/writecleancode/quiz-app-vue
+```
+
+2. Navigate to the project directory:
+
+```
+cd quiz-app-vue
+```
+
+3. Install the dependencies:
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+4. Start the development server:
 
-```sh
+```
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+5. Open your browser and visit http://localhost:5173 to view the application.
 
-```sh
-npm run build
-```
+
+
+## APPLICATION VIEW
+
+![app_preview1](https://github.com/writecleancode/quiz-app/assets/143826285/0a4d708e-cc23-49e8-95b7-b3b7fea9bbfc)
+***
+***
+![app_preview2](https://github.com/writecleancode/quiz-app/assets/143826285/0207aafb-f250-49a8-bee6-fa5cd69e3793)
+***
+***
+![app_preview3](https://github.com/writecleancode/quiz-app/assets/143826285/57380988-f700-4ad4-aa89-f72c8d8e9b9e)
+***
+***
+![app_preview4](https://github.com/writecleancode/quiz-app/assets/143826285/7545c569-bc94-41c1-b2f5-c73102754aed)
