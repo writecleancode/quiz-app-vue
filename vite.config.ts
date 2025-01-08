@@ -15,4 +15,11 @@ export default defineConfig({
 		},
 	},
 	base: baseUrl,
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
 });
