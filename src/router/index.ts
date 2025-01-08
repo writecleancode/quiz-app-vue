@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import MainView from '@/views/MainView.vue';
 import CountriesOfEurope from '@/views/Quizes/CountriesOfEurope.vue';
@@ -18,6 +18,23 @@ const routes = [
 ];
 
 export const router = createRouter({
-	history: createWebHashHistory(basePath),
+	history: createWebHistory(basePath),
 	routes,
+});
+
+router.beforeEach((to, from, next) => {
+	const l = window.location;
+	if (l.search[1] === '/') {
+		const decoded = l.search
+			.slice(1)
+			.split('&')
+			.map(function (s) {
+				return s.replace(/~and~/g, '&');
+			})
+			.join('?');
+
+		// Manipulowanie URL w Vue Routerze
+		window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+	}
+	next(); // Kontynuuj routowanie
 });
