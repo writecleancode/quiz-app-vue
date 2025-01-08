@@ -21,11 +21,3 @@ export const router = createRouter({
 	history: createWebHashHistory(basePath),
 	routes,
 });
-
-router.beforeEach((to, from, next) => {
-	if (to.path === '/' && to.hash.startsWith('#/')) {
-		next(to.hash.substr(1));
-	} else {
-		next();
-	}
-});
