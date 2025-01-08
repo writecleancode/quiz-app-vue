@@ -8,9 +8,9 @@ export default {
 
 		onMounted(() => {
 			let path = localStorage.getItem('path');
-			console.log(path);
 			if (path) {
 				localStorage.removeItem('path');
+				console.log(`/${path}`);
 				router.push(`/${path}`);
 			}
 		});
