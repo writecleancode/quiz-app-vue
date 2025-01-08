@@ -48,9 +48,6 @@ All photos have been cropped and their size has been reduced accordingly (to min
 
 3. Vue
 
-    - Vue Router
-
-
 4. Figma
 
 ---
