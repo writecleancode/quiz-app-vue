@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import MainView from '@/views/MainView.vue';
 import CountriesOfEurope from '@/views/Quizes/CountriesOfEurope.vue';
@@ -18,6 +18,6 @@ const routes = [
 ];
 
 export const router = createRouter({
-	history: createWebHashHistory(basePath),
+	history: createWebHistory(basePath),
 	routes,
 });

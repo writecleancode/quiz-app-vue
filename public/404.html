@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizApp (Vue)</title>
+
+    <script>
+        const path = window.location.pathname.slice(1);
+        localStorage.setItem('path', path);
+        window.location.href = '../';
+        console.log(window.location.pathname);
+    </script>
+</head>
+
+<body></body>
+
+</html>
