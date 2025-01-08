@@ -2,9 +2,6 @@
 import QuizCard from '@/components/molecules/QuizCard.vue';
 
 import { quizzes } from '@/data/quizzes';
-import { basePath } from '@/utils/base-path';
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
 
 export default {
 	components: {
@@ -12,22 +9,6 @@ export default {
 	},
 
 	setup() {
-		const router = useRouter();
-		let path = '/quiz-app-vue/quiz/panstwa-europy';
-
-		onMounted(async () => {
-			let path = localStorage.getItem('path');
-			if (path) {
-				await router.isReady();
-				localStorage.removeItem('path');
-				console.log(`/${path.slice(basePath.length)}`);
-				router.push(`/${path.slice(basePath.length)}`);
-			}
-		});
-
-		// console.log('/quiz-app-vue'.length);
-		// console.log(path?.slice('/quiz-app-vue'.length));
-
 		return {
 			quizzes,
 		};
