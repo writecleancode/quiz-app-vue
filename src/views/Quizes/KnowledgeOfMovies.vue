@@ -77,15 +77,19 @@ export default {
 			questionsData.value = cloneDeep(quizData);
 		});
 
-		watch(questionsData, () => {
-			if (
-				questionsData.value.length &&
-				questionsData.value[questionIndex.value].answersData.every(answer => answer.hasUserGuessed === true) &&
-				questionsData.value[questionIndex.value].hasUserAnswered === false
-			) {
-				showCorrectAnswers();
-			}
-		});
+		watch(
+			questionsData,
+			() => {
+				if (
+					questionsData.value.length &&
+					questionsData.value[questionIndex.value].answersData.every(answer => answer.hasUserGuessed === true) &&
+					questionsData.value[questionIndex.value].hasUserAnswered === false
+				) {
+					showCorrectAnswers();
+				}
+			},
+			{ deep: true }
+		);
 
 		watch(userScore, () => {
 			if (userScore.value >= maxScore) handleOpenModal();
