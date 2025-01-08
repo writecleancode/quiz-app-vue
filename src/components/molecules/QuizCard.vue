@@ -19,7 +19,7 @@ export default {
 
 <template>
 	<RouterLink
-		:to="`/quiz/${quiz.path}`"
+		:to="`${basePath}/quiz/${quiz.path}`"
 		class="quiz-card-wrapper"
 		:style="{ backgroundImage: `url('${basePath}/${quiz.backgroundURL}')` }">
 		<p class="quiz-card-title">{{ quiz.title }}</p>
