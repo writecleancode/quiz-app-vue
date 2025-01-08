@@ -2,15 +2,15 @@
 import { useRouter } from 'vue-router';
 
 export default {
-	// setup() {
-	// 	const router = useRouter();
+	setup() {
+		const router = useRouter();
 
-	// 	let path = localStorage.getItem('path');
-	// 	if (path) {
-	// 		localStorage.removeItem('path');
-	// 		router.push(path);
-	// 	}
-	// },
+		let path = localStorage.getItem('path');
+		if (path) {
+			localStorage.removeItem('path');
+			router.push(path);
+		}
+	},
 };
 </script>
 
