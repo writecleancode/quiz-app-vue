@@ -19,7 +19,7 @@ export default {
 				await router.isReady();
 				localStorage.removeItem('path');
 				console.log(`/${path}`);
-				router.push(`/${path}`);
+				router.push(`/quiz/panstwa-europy`);
 			}
 		});
 
