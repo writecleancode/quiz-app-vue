@@ -1,5 +1,5 @@
 <script lang="ts">
-import { handlePageReload } from './utils/ghPagesReloadFix';
+import { handlePageReload } from './utils/ghPagesReloadHandler';
 
 export default {
 	setup() {
