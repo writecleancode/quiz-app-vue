@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
 			.join('?');
 
 		// Manipulowanie URL w Vue Routerze
-		window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+		window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash);
 	}
 	next(); // Kontynuuj routowanie
 });
