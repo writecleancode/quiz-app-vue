@@ -1,4 +1,4 @@
-# # ![My Skills](https://skillicons.dev/icons?i=vue) Quiz App (Vue)
+# ![My Skills](https://skillicons.dev/icons?i=vue) Quiz App (Vue)
 
 🌐 [**LIVE DEMO**](https://writecleancode.github.io/quiz-app-vue/)
 
