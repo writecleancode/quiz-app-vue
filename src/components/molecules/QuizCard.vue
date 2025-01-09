@@ -1,20 +1,12 @@
-<script lang="ts">
+<script setup lang="ts">
 import { basePath } from '@/utils/base-path';
 
-export default {
-	props: {
-		quiz: {
-			type: Object,
-			required: true,
-		},
+const props = defineProps({
+	quiz: {
+		type: Object,
+		required: true,
 	},
-
-	setup() {
-		return {
-			basePath,
-		};
-	},
-};
+});
 </script>
 
 <template>

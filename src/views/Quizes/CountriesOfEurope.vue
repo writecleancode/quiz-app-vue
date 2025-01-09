@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import QuizWrapper from '@/components/templates/QuizWrapper.vue';
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import QuizHeader from '@/components/molecules/QuizHeader.vue';
@@ -33,118 +33,85 @@ const divideCoutriesList = (coutriesToDivide: CountryType[]) => {
 
 const coutriesNumber = quizData.length;
 
-export default {
-	components: {
-		QuizWrapper,
-		LoadingGif,
-		QuizHeader,
-		ScoreModal,
-	},
+// setup():
+const countriesList = ref<string[]>([]);
+const hasQuizStarted = ref(false);
+const inputValue = ref('');
+const guessedCoutriesNumber = ref(0);
+const secondsTotal = ref(initialTime);
+const timeLeft = ref(timeLeftText());
+const isQuizFinished = ref(false);
+const isMapDisplayed = ref(true);
+const coutriesWithStatus = ref(prepareCoutriesList());
+const coutriesToDisplay = ref(divideCoutriesList(coutriesWithStatus.value));
+const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-	setup() {
-		const countriesList = ref<string[]>([]);
-		const hasQuizStarted = ref(false);
-		const inputValue = ref('');
-		const guessedCoutriesNumber = ref(0);
-		const secondsTotal = ref(initialTime);
-		const timeLeft = ref(timeLeftText());
-		const isQuizFinished = ref(false);
-		const isMapDisplayed = ref(true);
-		const coutriesWithStatus = ref(prepareCoutriesList());
-		const coutriesToDisplay = ref(divideCoutriesList(coutriesWithStatus.value));
-		const { isModalOpen, handleOpenModal, closeModal } = useModal();
-
-		const handleInputChange = (e: Event) => {
-			inputValue.value = (e.target as HTMLInputElement).value;
-		};
-
-		const handleStartQuiz = () => {
-			hasQuizStarted.value = true;
-
-			interval = setInterval(() => {
-				secondsTotal.value -= 1;
-			}, 1000);
-		};
-
-		const handleCheckCoutries = () => {
-			coutriesWithStatus.value.map(country => {
-				if (country.isGuessed === true) return;
-
-				if (country.name.toLowerCase() === inputValue.value.toLowerCase().trim()) {
-					country.isGuessed = true;
-					inputValue.value = '';
-					guessedCoutriesNumber.value += 1;
-				}
-			});
-		};
-
-		const handleEndQuiz = () => {
-			isQuizFinished.value = true;
-			clearInterval(interval);
-			handleOpenModal();
-			if (guessedCoutriesNumber.value !== coutriesNumber) secondsTotal.value = 0;
-		};
-
-		const handleExtendTime = (secondsToExtend: number) => (secondsTotal.value += secondsToExtend);
-
-		const toggleMapVisibility = () => {
-			isMapDisplayed.value = !isMapDisplayed.value;
-		};
-
-		onMounted(() => {
-			countriesList.value = quizData;
-		});
-
-		watch(countriesList, () => {
-			coutriesWithStatus.value = prepareCoutriesList();
-		});
-
-		watch(coutriesWithStatus, () => {
-			coutriesToDisplay.value = divideCoutriesList(coutriesWithStatus.value);
-		});
-
-		watch(secondsTotal, () => {
-			timeLeft.value = timeLeftText(secondsTotal.value);
-
-			if (secondsTotal.value <= 0 && !isQuizFinished.value) handleEndQuiz();
-			if (secondsTotal.value >= maxTime) secondsTotal.value = maxTime;
-		});
-
-		watch(inputValue, () => {
-			handleCheckCoutries();
-		});
-
-		watch(guessedCoutriesNumber, () => {
-			if (guessedCoutriesNumber.value === coutriesWithStatus.value.length) {
-				isQuizFinished.value = true;
-				handleEndQuiz();
-			}
-		});
-
-		return {
-			basePath,
-			quizzes,
-			coutriesNumber,
-			maxTime,
-			countriesList,
-			hasQuizStarted,
-			inputValue,
-			guessedCoutriesNumber,
-			secondsTotal,
-			timeLeft,
-			isQuizFinished,
-			isMapDisplayed,
-			coutriesToDisplay,
-			handleStartQuiz,
-			handleInputChange,
-			handleEndQuiz,
-			handleExtendTime,
-			toggleMapVisibility,
-			isModalOpen,
-			closeModal,
-		};
-	},
+const handleInputChange = (e: Event) => {
+	inputValue.value = (e.target as HTMLInputElement).value;
 };
+
+const handleStartQuiz = () => {
+	hasQuizStarted.value = true;
+
+	interval = setInterval(() => {
+		secondsTotal.value -= 1;
+	}, 1000);
+};
+
+const handleCheckCoutries = () => {
+	coutriesWithStatus.value.map(country => {
+		if (country.isGuessed === true) return;
+
+		if (country.name.toLowerCase() === inputValue.value.toLowerCase().trim()) {
+			country.isGuessed = true;
+			inputValue.value = '';
+			guessedCoutriesNumber.value += 1;
+		}
+	});
+};
+
+const handleEndQuiz = () => {
+	isQuizFinished.value = true;
+	clearInterval(interval);
+	handleOpenModal();
+	if (guessedCoutriesNumber.value !== coutriesNumber) secondsTotal.value = 0;
+};
+
+const handleExtendTime = (secondsToExtend: number) => (secondsTotal.value += secondsToExtend);
+
+const toggleMapVisibility = () => {
+	isMapDisplayed.value = !isMapDisplayed.value;
+};
+
+onMounted(() => {
+	countriesList.value = quizData;
+});
+
+watch(countriesList, () => {
+	coutriesWithStatus.value = prepareCoutriesList();
+});
+
+watch(coutriesWithStatus, () => {
+	coutriesToDisplay.value = divideCoutriesList(coutriesWithStatus.value);
+});
+
+watch(secondsTotal, () => {
+	timeLeft.value = timeLeftText(secondsTotal.value);
+
+	if (secondsTotal.value <= 0 && !isQuizFinished.value) handleEndQuiz();
+	if (secondsTotal.value >= maxTime) secondsTotal.value = maxTime;
+});
+
+watch(inputValue, () => {
+	handleCheckCoutries();
+});
+
+watch(guessedCoutriesNumber, () => {
+	if (guessedCoutriesNumber.value === coutriesWithStatus.value.length) {
+		isQuizFinished.value = true;
+		handleEndQuiz();
+	}
+});
 </script>
 
 <template>

@@ -1,19 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import QuizCard from '@/components/molecules/QuizCard.vue';
 
 import { quizzes } from '@/data/quizzes';
-
-export default {
-	components: {
-		QuizCard,
-	},
-
-	setup() {
-		return {
-			quizzes,
-		};
-	},
-};
 </script>
 
 <template>

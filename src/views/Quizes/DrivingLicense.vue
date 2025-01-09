@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import QuizWrapper from '@/components/templates/QuizWrapper.vue';
 import QuizHeader from '@/components/molecules/QuizHeader.vue';
 import QuizProgress from '@/components/atoms/QuizProgress.vue';
@@ -10,82 +10,54 @@ import type { DrivingLicenseQuestionDataType } from '@/types/types';
 import { quizzes } from '@/data/quizzes';
 import { questionsData as quizData } from '@/data/drivingLicense';
 import { basePath } from '@/utils/base-path';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useModal } from '@/composables/useModal';
 import cloneDeep from 'lodash.clonedeep';
 
 const maxScore = quizData.length;
 
-export default {
-	components: {
-		QuizWrapper,
-		QuizHeader,
-		QuizProgress,
-		ControlProgressButtons,
-		LoadingGif,
-		ScoreModal,
-	},
+// setup():
+const questionsData = ref<DrivingLicenseQuestionDataType[]>([]);
+const questionIndex = ref(0);
+const userScore = ref(0);
+const isFirstQuestion = computed(() => questionIndex.value <= 0);
+const isLastQuestion = computed(() => questionIndex.value >= questionsData.value.length - 1);
+const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-	setup() {
-		const questionsData = ref<DrivingLicenseQuestionDataType[]>([]);
-		const questionIndex = ref(0);
-		const userScore = ref(0);
-		const isFirstQuestion = computed(() => questionIndex.value <= 0);
-		const isLastQuestion = computed(() => questionIndex.value >= questionsData.value.length - 1);
-		const { isModalOpen, handleOpenModal, closeModal } = useModal();
-
-		const handleChangeQuestion = (direction: string) => {
-			if (direction === 'next') {
-				if (isLastQuestion.value) {
-					handleOpenModal();
-					return;
-				}
-				questionIndex.value += 1;
-			}
-			if (direction === 'previous') {
-				if (isFirstQuestion.value) return;
-				questionIndex.value -= 1;
-			}
-		};
-
-		const highlightClickedAnswer = (answerIndex: number) => {
-			if (questionsData.value[questionIndex.value].hasUserAnswered) return;
-
-			questionsData.value[questionIndex.value].answers[answerIndex].hasUserChecked =
-				!questionsData.value[questionIndex.value].answers[answerIndex].hasUserChecked;
-		};
-
-		const handleAddPoint = () => (userScore.value += 1);
-
-		const showCorrectAnswers = () => {
-			questionsData.value[questionIndex.value].hasUserAnswered = true;
-
-			if (questionsData.value[questionIndex.value].answers.every(answer => answer.hasUserChecked === answer.isCorrectAnswer)) {
-				handleAddPoint();
-			}
-		};
-
-		onMounted(() => {
-			questionsData.value = cloneDeep(quizData);
-		});
-
-		return {
-			quizzes,
-			maxScore,
-			basePath,
-			questionsData,
-			questionIndex,
-			userScore,
-			isFirstQuestion,
-			isLastQuestion,
-			handleChangeQuestion,
-			highlightClickedAnswer,
-			showCorrectAnswers,
-			isModalOpen,
-			closeModal,
-		};
-	},
+const handleChangeQuestion = (direction: string) => {
+	if (direction === 'next') {
+		if (isLastQuestion.value) {
+			handleOpenModal();
+			return;
+		}
+		questionIndex.value += 1;
+	}
+	if (direction === 'previous') {
+		if (isFirstQuestion.value) return;
+		questionIndex.value -= 1;
+	}
 };
+
+const highlightClickedAnswer = (answerIndex: number) => {
+	if (questionsData.value[questionIndex.value].hasUserAnswered) return;
+
+	questionsData.value[questionIndex.value].answers[answerIndex].hasUserChecked =
+		!questionsData.value[questionIndex.value].answers[answerIndex].hasUserChecked;
+};
+
+const handleAddPoint = () => (userScore.value += 1);
+
+const showCorrectAnswers = () => {
+	questionsData.value[questionIndex.value].hasUserAnswered = true;
+
+	if (questionsData.value[questionIndex.value].answers.every(answer => answer.hasUserChecked === answer.isCorrectAnswer)) {
+		handleAddPoint();
+	}
+};
+
+onMounted(() => {
+	questionsData.value = cloneDeep(quizData);
+});
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import QuizWrapper from '@/components/templates/QuizWrapper.vue';
 import QuizHeader from '@/components/molecules/QuizHeader.vue';
 import QuizProgress from '@/components/atoms/QuizProgress.vue';
@@ -24,95 +24,66 @@ const initialFormValues: Record<string, string> = {
 
 const maxScore = quizData.reduce((accumulator, currentMovie) => accumulator + currentMovie.answersData.length, 0);
 
-export default {
-	components: {
-		QuizWrapper,
-		QuizHeader,
-		QuizProgress,
-		ControlProgressButtons,
-		LoadingGif,
-		ScoreModal,
-	},
+// setup():
+const questionsData = ref<KnowledgeOfMoviesQuestionDataType[]>([]);
+const questionIndex = ref(0);
+const inputValues = ref(initialFormValues);
+const userScore = ref(0);
+const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
+const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
+const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-	setup() {
-		const questionsData = ref<KnowledgeOfMoviesQuestionDataType[]>([]);
-		const questionIndex = ref(0);
-		const inputValues = ref(initialFormValues);
-		const userScore = ref(0);
-		const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
-		const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
-		const { isModalOpen, handleOpenModal, closeModal } = useModal();
+const handleInputChange = (e: Event, { id, acceptableAnswers }: { id: string; acceptableAnswers: string[] }, index: number) => {
+	const target = e.target as HTMLInputElement;
+	inputValues.value[id] = target.value;
 
-		const handleInputChange = (e: Event, { id, acceptableAnswers }: { id: string; acceptableAnswers: string[] }, index: number) => {
-			const target = e.target as HTMLInputElement;
-			inputValues.value[id] = target.value;
+	if (acceptableAnswers.some(answer => answer.toLowerCase() === target.value.toLowerCase())) {
+		questionsData.value[questionIndex.value].answersData[index].hasUserGuessed =
+			!questionsData.value[questionIndex.value].answersData[index].hasUserGuessed;
 
-			if (acceptableAnswers.some(answer => answer.toLowerCase() === target.value.toLowerCase())) {
-				questionsData.value[questionIndex.value].answersData[index].hasUserGuessed =
-					!questionsData.value[questionIndex.value].answersData[index].hasUserGuessed;
-
-				userScore.value += 1;
-			}
-		};
-
-		const handleChangeQuestion = (direction: string) => {
-			if (direction === 'next') {
-				if (isLastQuestion.value) {
-					handleOpenModal();
-					return;
-				}
-				questionIndex.value += 1;
-			}
-			if (direction === 'previous') {
-				if (isFirstQuestion.value) return;
-				questionIndex.value -= 1;
-			}
-		};
-
-		const showCorrectAnswers = () => {
-			questionsData.value[questionIndex.value].hasUserAnswered = true;
-		};
-
-		onMounted(() => {
-			questionsData.value = cloneDeep(quizData);
-		});
-
-		watch(
-			questionsData,
-			() => {
-				if (
-					questionsData.value.length &&
-					questionsData.value[questionIndex.value].answersData.every(answer => answer.hasUserGuessed === true) &&
-					questionsData.value[questionIndex.value].hasUserAnswered === false
-				) {
-					showCorrectAnswers();
-				}
-			},
-			{ deep: true }
-		);
-
-		watch(userScore, () => {
-			if (userScore.value >= maxScore) handleOpenModal();
-		});
-
-		return {
-			quizzes,
-			basePath,
-			maxScore,
-			questionsData,
-			questionIndex,
-			inputValues,
-			userScore,
-			isFirstQuestion,
-			isLastQuestion,
-			handleInputChange,
-			handleChangeQuestion,
-			showCorrectAnswers,
-			isModalOpen,
-			closeModal,
-		};
-	},
+		userScore.value += 1;
+	}
 };
+
+const handleChangeQuestion = (direction: string) => {
+	if (direction === 'next') {
+		if (isLastQuestion.value) {
+			handleOpenModal();
+			return;
+		}
+		questionIndex.value += 1;
+	}
+	if (direction === 'previous') {
+		if (isFirstQuestion.value) return;
+		questionIndex.value -= 1;
+	}
+};
+
+const showCorrectAnswers = () => {
+	questionsData.value[questionIndex.value].hasUserAnswered = true;
+};
+
+onMounted(() => {
+	questionsData.value = cloneDeep(quizData);
+});
+
+watch(
+	questionsData,
+	() => {
+		if (
+			questionsData.value.length &&
+			questionsData.value[questionIndex.value].answersData.every(answer => answer.hasUserGuessed === true) &&
+			questionsData.value[questionIndex.value].hasUserAnswered === false
+		) {
+			showCorrectAnswers();
+		}
+	},
+	{ deep: true }
+);
+
+watch(userScore, () => {
+	if (userScore.value >= maxScore) handleOpenModal();
+});
 </script>
 
 <template>

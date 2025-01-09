@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import QuizWrapper from '@/components/templates/QuizWrapper.vue';
 import QuizHeader from '@/components/molecules/QuizHeader.vue';
 import QuizProgress from '@/components/atoms/QuizProgress.vue';
@@ -16,78 +16,49 @@ import cloneDeep from 'lodash.clonedeep';
 
 const maxScore = quizData.length;
 
-export default {
-	components: {
-		QuizWrapper,
-		QuizHeader,
-		QuizProgress,
-		ControlProgressButtons,
-		LoadingGif,
-		ScoreModal,
-	},
+// setup():
+const questionsData = ref<RecognizeLogoQuestionDataType[]>([]);
+const questionIndex = ref(0);
+const givenAnswersIndexes = ref<number[]>([]);
+const isQuizFinished = ref(false);
+const userScore = ref(0);
+const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
+const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
+const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-	setup() {
-		const questionsData = ref<RecognizeLogoQuestionDataType[]>([]);
-		const questionIndex = ref(0);
-		const givenAnswersIndexes = ref<number[]>([]);
-		const isQuizFinished = ref(false);
-		const userScore = ref(0);
-		const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
-		const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
-		const { isModalOpen, handleOpenModal, closeModal } = useModal();
+const handleAnswersStatus = (clickedCorrectAnswer: boolean) => {
+	if (givenAnswersIndexes.value.includes(questionIndex.value)) return;
+	givenAnswersIndexes.value.push(questionIndex.value);
 
-		const handleAnswersStatus = (clickedCorrectAnswer: boolean) => {
-			if (givenAnswersIndexes.value.includes(questionIndex.value)) return;
-			givenAnswersIndexes.value.push(questionIndex.value);
-
-			if (clickedCorrectAnswer) userScore.value += 1;
-		};
-
-		const handleFinishQuiz = () => {
-			handleOpenModal();
-			isQuizFinished.value = true;
-		};
-
-		const handleChangeQuestion = (direction: string) => {
-			if (direction === 'next') {
-				if (isLastQuestion.value) {
-					handleFinishQuiz();
-					return;
-				}
-				questionIndex.value += 1;
-			}
-			if (direction === 'previous') {
-				if (isFirstQuestion.value) return;
-				questionIndex.value -= 1;
-			}
-		};
-
-		onMounted(() => {
-			questionsData.value = cloneDeep(quizData);
-		});
-
-		watch(userScore, () => {
-			if (userScore.value >= maxScore) handleFinishQuiz();
-		});
-
-		return {
-			quizzes,
-			basePath,
-			maxScore,
-			questionsData,
-			questionIndex,
-			givenAnswersIndexes,
-			userScore,
-			isFirstQuestion,
-			isLastQuestion,
-			isQuizFinished,
-			handleAnswersStatus,
-			handleChangeQuestion,
-			isModalOpen,
-			closeModal,
-		};
-	},
+	if (clickedCorrectAnswer) userScore.value += 1;
 };
+
+const handleFinishQuiz = () => {
+	handleOpenModal();
+	isQuizFinished.value = true;
+};
+
+const handleChangeQuestion = (direction: string) => {
+	if (direction === 'next') {
+		if (isLastQuestion.value) {
+			handleFinishQuiz();
+			return;
+		}
+		questionIndex.value += 1;
+	}
+	if (direction === 'previous') {
+		if (isFirstQuestion.value) return;
+		questionIndex.value -= 1;
+	}
+};
+
+onMounted(() => {
+	questionsData.value = cloneDeep(quizData);
+});
+
+watch(userScore, () => {
+	if (userScore.value >= maxScore) handleFinishQuiz();
+});
 </script>
 
 <template>

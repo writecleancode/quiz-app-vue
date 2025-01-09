@@ -1,11 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import { handlePageReload } from './utils/ghPagesReloadHandler';
 
-export default {
-	setup() {
-		handlePageReload();
-	},
-};
+handlePageReload();
 </script>
 
 <template>

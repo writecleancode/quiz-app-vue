@@ -1,11 +1,5 @@
-<script lang="ts">
+<script setup lang="ts">
 import AppNameTitle from '@/components/atoms/AppNameTitle.vue';
-
-export default {
-	components: {
-		AppNameTitle,
-	},
-};
 </script>
 
 <template>

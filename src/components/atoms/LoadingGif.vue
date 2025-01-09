@@ -1,13 +1,5 @@
-<script lang="ts">
+<script setup lang="ts">
 import { basePath } from '@/utils/base-path';
-
-export default {
-	setup() {
-		return {
-			basePath,
-		};
-	},
-};
 </script>
 
 <template>

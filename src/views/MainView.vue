@@ -1,15 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import Header from '@/components/molecules/Header.vue';
 import AppNameTitle from '@/components/atoms/AppNameTitle.vue';
 import QuizCards from '@/components/organisms/QuizCards.vue';
-
-export default {
-	components: {
-		Header,
-		AppNameTitle,
-		QuizCards,
-	},
-};
 </script>
 
 <template>

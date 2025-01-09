@@ -1,20 +1,10 @@
-<script lang="ts">
-import { basePath } from '@/utils/base-path';
-
-export default {
-	props: {
-		hasHoverEffect: {
-			type: Boolean,
-			default: false,
-		},
+<script setup lang="ts">
+const props = defineProps({
+	hasHoverEffect: {
+		type: Boolean,
+		default: false,
 	},
-
-	setup() {
-		return {
-			basePath,
-		};
-	},
-};
+});
 </script>
 
 <template>

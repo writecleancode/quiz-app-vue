@@ -1,38 +1,30 @@
-<script lang="ts">
-import { basePath } from '@/utils/base-path';
+<script setup lang="ts">
 import type { PropType } from 'vue';
+import { basePath } from '@/utils/base-path';
 
-export default {
-	props: {
-		previousButton: {
-			type: String,
-		},
-		nextButton: {
-			type: String,
-		},
-
-		showCorrectAnswers: {
-			type: Function as PropType<() => void>,
-		},
-
-		handleChangeQuestion: {
-			type: Function,
-			required: true,
-		},
-		isFirstQuestion: {
-			type: Boolean,
-		},
-		isLastQuestion: {
-			type: Boolean,
-		},
+const props = defineProps({
+	previousButton: {
+		type: String,
+	},
+	nextButton: {
+		type: String,
 	},
 
-	setup() {
-		return {
-			basePath,
-		};
+	showCorrectAnswers: {
+		type: Function as PropType<() => void>,
 	},
-};
+
+	handleChangeQuestion: {
+		type: Function,
+		required: true,
+	},
+	isFirstQuestion: {
+		type: Boolean,
+	},
+	isLastQuestion: {
+		type: Boolean,
+	},
+});
 </script>
 
 <template>

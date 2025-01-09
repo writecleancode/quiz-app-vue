@@ -1,33 +1,25 @@
-<script lang="ts">
-import { basePath } from '@/utils/base-path';
+<script setup lang="ts">
 import type { PropType } from 'vue';
+import { basePath } from '@/utils/base-path';
 
-export default {
-	props: {
-		isOpen: {
-			type: Boolean,
-			default: false,
-		},
-		userScore: {
-			type: Number,
-			required: true,
-		},
-		totalScore: {
-			type: Number,
-			required: true,
-		},
-		handleCloseModal: {
-			type: Function as PropType<() => void>,
-			required: true,
-		},
+const props = defineProps({
+	isOpen: {
+		type: Boolean,
+		default: false,
 	},
-
-	setup() {
-		return {
-			basePath,
-		};
+	userScore: {
+		type: Number,
+		required: true,
 	},
-};
+	totalScore: {
+		type: Number,
+		required: true,
+	},
+	handleCloseModal: {
+		type: Function as PropType<() => void>,
+		required: true,
+	},
+});
 </script>
 
 <template>
