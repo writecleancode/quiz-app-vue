@@ -2,7 +2,7 @@
 import type { PropType } from 'vue';
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	isOpen: {
 		type: Boolean,
 		default: false,

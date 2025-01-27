@@ -2,18 +2,16 @@
 import type { PropType } from 'vue';
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	previousButton: {
 		type: String,
 	},
 	nextButton: {
 		type: String,
 	},
-
 	showCorrectAnswers: {
 		type: Function as PropType<() => void>,
 	},
-
 	handleChangeQuestion: {
 		type: Function,
 		required: true,

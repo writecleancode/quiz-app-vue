@@ -46,10 +46,6 @@ const coutriesWithStatus = ref(prepareCoutriesList());
 const coutriesToDisplay = ref(divideCoutriesList(coutriesWithStatus.value));
 const { isModalOpen, handleOpenModal, closeModal } = useModal();
 
-const handleInputChange = (e: Event) => {
-	inputValue.value = (e.target as HTMLInputElement).value;
-};
-
 const handleStartQuiz = () => {
 	hasQuizStarted.value = true;
 
@@ -121,14 +117,7 @@ watch(guessedCoutriesNumber, () => {
 			<div v-if="hasQuizStarted" class="form-wrapper">
 				<div class="form-field">
 					<label class="form-field__label" for="country">Wpisz nazwę państwa:</label>
-					<input
-						class="form-field__input"
-						:value="inputValue"
-						@input="handleInputChange($event)"
-						:disabled="isQuizFinished"
-						type="text"
-						id="country"
-						name="country" />
+					<input class="form-field__input" v-model="inputValue" :disabled="isQuizFinished" type="text" id="country" name="country" />
 				</div>
 				<div class="form-info">
 					<p class="form-info__progress">{{ guessedCoutriesNumber }} / {{ coutriesNumber }}</p>

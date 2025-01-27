@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	quizTitle: {
 		type: String,
 		required: true,
