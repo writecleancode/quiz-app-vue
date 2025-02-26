@@ -185,6 +185,10 @@ watch(guessedCoutriesNumber, () => {
 
 .controls-wrapper {
 	margin-bottom: 1.6rem;
+
+	@media (width >= 1400px) {
+		margin-bottom: 2.4rem;
+	}
 }
 
 .start-btn {
@@ -200,6 +204,18 @@ watch(guessedCoutriesNumber, () => {
 	&:hover {
 		background-color: $success-light;
 	}
+
+	@media (width >= 900px) {
+		margin-top: -0.5rem;
+		margin-bottom: -0.5rem;
+		line-height: 1em;
+	}
+
+	@media (width >= 1400px) {
+		margin-top: -0.3rem;
+		margin-bottom: 0;
+		line-height: normal;
+	}
 }
 
 .form-wrapper {
@@ -207,6 +223,20 @@ watch(guessedCoutriesNumber, () => {
 	grid-template-rows: repeat(2, auto);
 	grid-template-columns: repeat(2, auto);
 	gap: 0.8rem;
+
+	@media (width >= 900px) {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	@media (width >= 940px) {
+		gap: 2.4rem;
+	}
+
+	@media (width >= 1400px) {
+		gap: 3.2rem;
+	}
 }
 
 .form-field {
@@ -229,6 +259,29 @@ watch(guessedCoutriesNumber, () => {
 
 		&:disabled {
 			cursor: not-allowed;
+		}
+	}
+
+	@media (width >= 600px) {
+		flex-direction: row;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	@media (width >= 1400px) {
+		flex-direction: row;
+		align-items: center;
+		gap: 0.8rem;
+
+		gap: 1.6rem;
+
+		&__label {
+			font-size: 1.7rem;
+		}
+
+		&__input {
+			padding: 0.5rem 1rem;
+			font-size: 1.6rem;
 		}
 	}
 }
@@ -258,6 +311,32 @@ watch(guessedCoutriesNumber, () => {
 		font-weight: bold;
 		line-height: 1.4;
 		font-variant-numeric: tabular-nums;
+	}
+
+	@media (width >= 440px) {
+		flex-direction: row;
+		margin-top: 2.5rem;
+	}
+
+	@media (width >= 600px) {
+		margin-top: 0;
+	}
+
+	@media (width >= 900px) {
+		gap: 1.6rem;
+	}
+
+	@media (width >= 1400px) {
+		gap: 2.4rem;
+
+		&__progress {
+			font-size: 1.6rem;
+		}
+
+		&__timeLeft {
+			font-size: 3rem;
+			min-width: 91px;
+		}
 	}
 }
 
@@ -294,6 +373,36 @@ watch(guessedCoutriesNumber, () => {
 			background-color: $error-light;
 		}
 	}
+
+	@media (width >= 360px) {
+		gap: 1.6rem;
+	}
+
+	@media (width >= 370px) {
+		&__add-more-time-btn,
+		&__give-up-btn {
+			font-size: 1.4rem;
+		}
+	}
+
+	@media (width >= 600px) {
+		&__add-more-time-btn,
+		&__give-up-btn {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (width >= 940px) {
+		flex-grow: 1;
+	}
+
+	@media (width >= 1400px) {
+		&__add-more-time-btn,
+		&__give-up-btn {
+			padding: 0.8rem 1.6rem;
+			font-size: 1.6rem;
+		}
+	}
 }
 
 .helpers-wrapper {
@@ -301,6 +410,16 @@ watch(guessedCoutriesNumber, () => {
 	flex-direction: column;
 	gap: 0.8rem;
 	max-width: 597px;
+
+	@media (width >= 860px) {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		max-width: none;
+	}
+
+	@media (width >= 1400px) {
+		gap: 2.4rem;
+	}
 }
 
 .toggle-map-display-btn {
@@ -311,6 +430,10 @@ watch(guessedCoutriesNumber, () => {
 	width: 100%;
 	padding: 0.8rem;
 	font-size: 1.4rem;
+
+	@media (width >= 860px) {
+		display: none;
+	}
 }
 
 .map-img {
@@ -320,6 +443,16 @@ watch(guessedCoutriesNumber, () => {
 .results-wrapper {
 	display: flex;
 	flex-direction: column;
+
+	@media (width >= 370px) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 0.8rem;
+	}
+
+	@media (width >= 1400px) {
+		column-gap: 1.6rem;
+	}
 }
 
 .result {
@@ -369,151 +502,6 @@ watch(guessedCoutriesNumber, () => {
 
 	&::before {
 		opacity: 0;
-	}
-}
-
-@media (min-width: 360px) {
-	.form-btns {
-		gap: 1.6rem;
-	}
-}
-
-@media (min-width: 370px) {
-	.form-btns {
-		&__add-more-time-btn,
-		&__give-up-btn {
-			font-size: 1.4rem;
-		}
-	}
-
-	.results-wrapper {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		column-gap: 0.8rem;
-	}
-}
-
-@media (min-width: 440px) {
-	.form-info {
-		flex-direction: row;
-		margin-top: 2.5rem;
-	}
-}
-
-@media (min-width: 600px) {
-	.form-field {
-		flex-direction: row;
-		align-items: center;
-		gap: 0.8rem;
-	}
-
-	.form-info {
-		margin-top: 0;
-	}
-
-	.form-btns {
-		&__add-more-time-btn,
-		&__give-up-btn {
-			font-size: 1.5rem;
-		}
-	}
-}
-
-@media (min-width: 860px) {
-	.helpers-wrapper {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		max-width: none;
-	}
-
-	.toggle-map-display-btn {
-		display: none;
-	}
-}
-
-@media (min-width: 900px) {
-	.start-btn {
-		margin-top: -0.5rem;
-		margin-bottom: -0.5rem;
-		line-height: 1em;
-	}
-
-	.form-wrapper {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
-
-	.form-info {
-		gap: 1.6rem;
-	}
-}
-
-@media (min-width: 940px) {
-	.form-wrapper {
-		gap: 2.4rem;
-	}
-
-	.form-btns {
-		flex-grow: 1;
-	}
-}
-
-@media (min-width: 1400px) {
-	.start-btn {
-		margin-top: -0.3rem;
-		margin-bottom: 0;
-		line-height: normal;
-	}
-
-	.controls-wrapper {
-		margin-bottom: 2.4rem;
-	}
-
-	.form-wrapper {
-		gap: 3.2rem;
-	}
-
-	.form-field {
-		gap: 1.6rem;
-
-		&__label {
-			font-size: 1.7rem;
-		}
-
-		&__input {
-			padding: 0.5rem 1rem;
-			font-size: 1.6rem;
-		}
-	}
-
-	.form-info {
-		gap: 2.4rem;
-
-		&__progress {
-			font-size: 1.6rem;
-		}
-
-		&__timeLeft {
-			font-size: 3rem;
-			min-width: 91px;
-		}
-	}
-
-	.form-btns {
-		&__add-more-time-btn,
-		&__give-up-btn {
-			padding: 0.8rem 1.6rem;
-			font-size: 1.6rem;
-		}
-	}
-
-	.helpers-wrapper {
-		gap: 2.4rem;
-	}
-
-	.results-wrapper {
-		column-gap: 1.6rem;
 	}
 }
 </style>

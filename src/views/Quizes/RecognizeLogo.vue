@@ -108,6 +108,11 @@ watch(userScore, () => {
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
+
+	@media (width >= 1000px) {
+		flex-direction: row;
+		gap: 2.4rem;
+	}
 }
 
 .picture-wrapper {
@@ -120,12 +125,25 @@ watch(userScore, () => {
 	&__picture {
 		width: 100%;
 	}
+
+	@media (width >= 1000px) {
+		max-width: 320px;
+	}
 }
 
 .controls-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
+
+	@media (width >= 1000px) {
+		justify-content: center;
+		gap: 4rem;
+	}
+
+	@media (width >= 1400px) {
+		gap: 4.8rem;
+	}
 }
 
 .question-wrapper {
@@ -135,6 +153,16 @@ watch(userScore, () => {
 
 	&__question {
 		font-size: 1.9rem;
+	}
+
+	@media (width >= 1000px) {
+		gap: 1.6rem;
+	}
+
+	@media (width >= 1400px) {
+		&__question {
+			font-size: 2.4rem;
+		}
 	}
 }
 
@@ -167,6 +195,14 @@ watch(userScore, () => {
 			opacity: 1;
 		}
 	}
+
+	@media (width >= 1400px) {
+		gap: 1.6rem;
+
+		&__answer {
+			font-size: 2rem;
+		}
+	}
 }
 
 [data-correct='true'] {
@@ -183,56 +219,14 @@ watch(userScore, () => {
 	display: flex;
 	flex-direction: column-reverse;
 	gap: 0.8rem;
-}
 
-@media (min-width: 510px) {
-	.buttons-wrapper {
+	@media (width >= 510px) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 	}
-}
 
-@media (min-width: 1000px) {
-	.recognize-logo-wrapper {
-		flex-direction: row;
+	@media (width >= 1000px) {
 		gap: 2.4rem;
-	}
-
-	.picture-wrapper {
-		max-width: 320px;
-	}
-
-	.controls-wrapper {
-		justify-content: center;
-		gap: 4rem;
-	}
-
-	.question-wrapper {
-		gap: 1.6rem;
-	}
-
-	.buttons-wrapper {
-		gap: 2.4rem;
-	}
-}
-
-@media (min-width: 1400px) {
-	.controls-wrapper {
-		gap: 4.8rem;
-	}
-
-	.question-wrapper {
-		&__question {
-			font-size: 2.4rem;
-		}
-	}
-
-	.answers-wrapper {
-		gap: 1.6rem;
-
-		&__answer {
-			font-size: 2rem;
-		}
 	}
 }
 </style>

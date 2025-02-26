@@ -122,6 +122,20 @@ onMounted(() => {
 	flex-direction: column;
 	gap: 1.6rem;
 	max-width: 492px;
+
+	@media (width >= 900px) {
+		max-width: 592px;
+	}
+
+	@media (width >= 1000px) {
+		max-width: 876px;
+		flex-direction: row;
+		gap: 2.4rem;
+	}
+
+	@media (width >= 1400px) {
+		max-width: 954px;
+	}
 }
 
 .picture-wrapper {
@@ -133,12 +147,24 @@ onMounted(() => {
 		object-fit: cover;
 		object-position: 80%;
 	}
+
+	@media (width >= 1000px) {
+		max-width: 400px;
+	}
 }
 
 .controls-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
+
+	@media (width >= 510px) {
+		gap: 2.4rem;
+	}
+
+	@media (width >= 1000px) {
+		justify-content: space-between;
+	}
 }
 
 .question-wrapper {
@@ -148,6 +174,16 @@ onMounted(() => {
 
 	&__question {
 		font-size: 1.9rem;
+	}
+
+	@media (width >= 1000px) {
+		gap: 1.6rem;
+	}
+
+	@media (width >= 1400px) {
+		&__question {
+			font-size: 2.2rem;
+		}
 	}
 }
 
@@ -176,6 +212,24 @@ onMounted(() => {
 		pointer-events: none;
 		visibility: hidden;
 	}
+
+	@media (width >= 380px) {
+		&__answer {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (width >= 1000px) {
+		&__answer {
+			gap: 1.6rem;
+		}
+	}
+
+	@media (width >= 1400px) {
+		&__answer {
+			font-size: 1.8rem;
+		}
+	}
 }
 
 [data-selected='true'] {
@@ -201,94 +255,32 @@ onMounted(() => {
 	color: #9a9a9a;
 	font-size: 1.2rem;
 	text-align: center;
+
+	@media (width >= 510px) {
+		font-size: 1.4rem;
+	}
+
+	@media (width >= 1000px) {
+		font-size: 1.5rem;
+	}
+
+	@media (width >= 1400px) {
+		font-size: 1.8rem;
+	}
 }
 
 .buttons-wrapper {
 	display: flex;
 	flex-direction: column-reverse;
 	gap: 0.8rem;
-}
 
-@media (min-width: 380px) {
-	.answers-wrapper {
-		&__answer {
-			font-size: 1.5rem;
-		}
-	}
-}
-
-@media (min-width: 510px) {
-	.controls-wrapper {
-		gap: 2.4rem;
-	}
-
-	.instruction-text {
-		font-size: 1.4rem;
-	}
-
-	.buttons-wrapper {
+	@media (width >= 510px) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 	}
-}
 
-@media (min-width: 900px) {
-	.driving-license-wrapper {
-		max-width: 592px;
-	}
-}
-
-@media (min-width: 1000px) {
-	.driving-license-wrapper {
-		max-width: 876px;
-		flex-direction: row;
+	@media (width >= 1000px) {
 		gap: 2.4rem;
-	}
-
-	.picture-wrapper {
-		max-width: 400px;
-	}
-
-	.controls-wrapper {
-		justify-content: space-between;
-	}
-
-	.question-wrapper {
-		gap: 1.6rem;
-	}
-
-	.answers-wrapper {
-		gap: 1.6rem;
-	}
-
-	.instruction-text {
-		font-size: 1.5rem;
-	}
-
-	.buttons-wrapper {
-		gap: 2.4rem;
-	}
-}
-
-@media (min-width: 1400px) {
-	.driving-license-wrapper {
-		max-width: 954px;
-	}
-
-	.question-wrapper {
-		&__question {
-			font-size: 2.2rem;
-		}
-	}
-
-	.answers-wrapper {
-		&__answer {
-			font-size: 1.8rem;
-		}
-	}
-
-	.instruction-text {
-		font-size: 1.8rem;
 	}
 }
 </style>

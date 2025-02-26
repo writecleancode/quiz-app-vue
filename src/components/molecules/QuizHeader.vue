@@ -33,6 +33,11 @@ defineProps({
 	display: flex;
 	gap: 1.6rem;
 	margin-bottom: 1.6rem;
+
+	@media (width >= 1400px) {
+		gap: 2.4rem;
+		margin-bottom: 3.2rem;
+	}
 }
 
 .back-btn {
@@ -52,15 +57,8 @@ defineProps({
 	&:hover {
 		background-color: $info-light;
 	}
-}
 
-.quiz-header-title {
-	font-size: 1.9rem;
-	font-weight: bold;
-}
-
-@media (min-width: 900px) {
-	.back-btn {
+	@media (width >= 900px) {
 		padding-left: 2.4rem;
 		padding-right: 2.4rem;
 
@@ -68,15 +66,8 @@ defineProps({
 			display: inline;
 		}
 	}
-}
 
-@media (min-width: 1400px) {
-	.quiz-header-wrapper {
-		gap: 2.4rem;
-		margin-bottom: 3.2rem;
-	}
-
-	.back-btn {
+	@media (width >= 1400px) {
 		padding: 1.6rem 3.2rem;
 
 		&__text {
@@ -84,12 +75,19 @@ defineProps({
 			font-size: 2rem;
 		}
 	}
+}
 
-	.quiz-header-title {
+.quiz-header-title {
+	font-size: 1.9rem;
+	font-weight: bold;
+
+	@media (width >= 1400px) {
 		font-size: 2.4rem;
 	}
+}
 
-	.quiz-header-description {
+.quiz-header-description {
+	@media (min-width: 1400px) {
 		font-size: 2rem;
 	}
 }

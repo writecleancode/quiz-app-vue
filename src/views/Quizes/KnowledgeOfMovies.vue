@@ -139,6 +139,16 @@ watch(userScore, () => {
 	top: 0.8rem;
 	right: 0.8rem;
 	line-height: 1em;
+
+	@media (width >= 400px) {
+		top: 1.6rem;
+		right: 1.6rem;
+	}
+
+	@media (width >= 1200px) {
+		top: 2.4rem;
+		right: 2.4rem;
+	}
 }
 
 .knowledge-of-movies-wrapper {
@@ -146,11 +156,31 @@ watch(userScore, () => {
 	flex-direction: column;
 	gap: 1.6rem;
 	max-width: 460px;
+
+	@media (width >= 900px) {
+		display: grid;
+		grid-template-columns: auto minmax(auto, 660px);
+		max-width: 962px;
+	}
+
+	@media (width >= 1400px) {
+		grid-template-columns: auto minmax(auto, 860px);
+		gap: 2.4rem;
+		max-width: 1040px;
+	}
 }
 
 .picture-wrapper {
 	&__picture {
 		width: 100%;
+	}
+
+	@media (width >= 900px) {
+		max-width: 210px;
+	}
+
+	@media (width >= 1400px) {
+		max-width: 270px;
 	}
 }
 
@@ -158,11 +188,19 @@ watch(userScore, () => {
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
+
+	@media (width >= 1400px) {
+		gap: 1.6rem;
+	}
 }
 
 .title {
 	font-size: 1.9rem;
 	font-weight: bold;
+
+	@media (width >= 1400px) {
+		font-size: 2.2rem;
+	}
 }
 
 .text-wrapper {
@@ -185,6 +223,14 @@ watch(userScore, () => {
 		border: 1px solid #9e9e9e;
 		font-size: inherit;
 	}
+
+	@media (width >= 1400px) {
+		gap: 2rem;
+
+		&__text {
+			font-size: 1.8rem;
+		}
+	}
 }
 
 [data-status='guessed'] {
@@ -202,70 +248,14 @@ watch(userScore, () => {
 	flex-direction: column-reverse;
 	gap: 0.8rem;
 	margin-top: 0.8rem;
-}
 
-@media (min-width: 400px) {
-	.progress {
-		top: 1.6rem;
-		right: 1.6rem;
-	}
-}
-
-@media (min-width: 440px) {
-	.buttons-wrapper {
+	@media (width >= 440px) {
 		flex-direction: row;
 		justify-content: space-between;
 	}
-}
 
-@media (min-width: 900px) {
-	.knowledge-of-movies-wrapper {
-		display: grid;
-		grid-template-columns: auto minmax(auto, 660px);
-		max-width: 962px;
-	}
-
-	.picture-wrapper {
-		max-width: 210px;
-	}
-
-	.buttons-wrapper {
+	@media (width >= 900px) {
 		margin-top: auto;
-	}
-}
-
-@media (min-width: 1200px) {
-	.progress {
-		top: 2.4rem;
-		right: 2.4rem;
-	}
-}
-
-@media (min-width: 1400px) {
-	.knowledge-of-movies-wrapper {
-		grid-template-columns: auto minmax(auto, 860px);
-		max-width: 1040px;
-		gap: 2.4rem;
-	}
-
-	.picture-wrapper {
-		max-width: 270px;
-	}
-
-	.controls-wrapper {
-		gap: 1.6rem;
-	}
-
-	.title {
-		font-size: 2.2rem;
-	}
-
-	.text-wrapper {
-		gap: 2rem;
-
-		&__text {
-			font-size: 1.8rem;
-		}
 	}
 }
 </style>

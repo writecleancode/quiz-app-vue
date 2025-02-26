@@ -17,24 +17,18 @@ defineProps({
 	top: 0.8rem;
 	right: 0.8rem;
 	line-height: 1em;
-}
 
-@media (min-width: 400px) {
-	.quiz-progress {
+	@media (width >= 400px) {
 		top: 1.6rem;
 		right: 1.6rem;
 	}
-}
 
-@media (min-width: 1200px) {
-	.quiz-progress {
+	@media (width >= 1200px) {
 		top: 2.4rem;
 		right: 2.4rem;
 	}
-}
 
-@media (min-width: 1400px) {
-	.quiz-progress {
+	@media (width >= 1400px) {
 		font-size: 2rem;
 	}
 }

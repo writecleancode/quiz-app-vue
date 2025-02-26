@@ -78,16 +78,29 @@ defineProps({
 	opacity: 1;
 
 	animation: slide-up 0.5s forwards;
+
+	@media (width >= 1400px) {
+		padding: 4rem;
+	}
 }
 
 .score-title {
 	font-size: 1.8rem;
+
+	@media (width >= 1400px) {
+		font-size: 2.4rem;
+	}
 }
 
 .score-text {
 	margin-top: 0.8rem;
 	font-size: 2rem;
 	font-weight: bold;
+
+	@media (width >= 1400px) {
+		margin-top: 1.6rem;
+		font-size: 3rem;
+	}
 }
 
 .score-percentage {
@@ -99,6 +112,11 @@ defineProps({
 	display: flex;
 	gap: 0.8rem;
 	margin-top: 1.6rem;
+
+	@media (width >= 1400px) {
+		gap: 1.6rem;
+		margin-top: 2.4rem;
+	}
 }
 
 .back-btn,
@@ -119,6 +137,14 @@ defineProps({
 		min-height: 2rem;
 		translate: 0 1px;
 	}
+
+	@media (width >= 1400px) {
+		font-size: 1.8rem;
+
+		img {
+			translate: 0;
+		}
+	}
 }
 
 .back-btn {
@@ -127,34 +153,5 @@ defineProps({
 
 .close-btn {
 	background-color: $success;
-}
-
-@media (min-width: 1400px) {
-	.score-modal-wrapper {
-		padding: 4rem;
-	}
-
-	.score-title {
-		font-size: 2.4rem;
-	}
-
-	.score-text {
-		margin-top: 1.6rem;
-		font-size: 3rem;
-	}
-
-	.buttons-wrapper {
-		gap: 1.6rem;
-		margin-top: 2.4rem;
-	}
-
-	.back-btn,
-	.close-btn {
-		font-size: 1.8rem;
-
-		img {
-			translate: 0 2px;
-		}
-	}
 }
 </style>

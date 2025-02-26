@@ -47,25 +47,25 @@ defineProps({
 	&:hover::after {
 		opacity: 1;
 	}
+
+	@media (width >= 1400px) {
+		padding: 2.4rem;
+		max-width: 620px;
+	}
 }
 
 .quiz-card-title {
 	margin-bottom: 0.8rem;
 	font-size: 2rem;
 	font-weight: bold;
-}
 
-@media (min-width: 1400px) {
-	.quiz-card-wrapper {
-		padding: 2.4rem;
-		max-width: 620px;
-	}
-
-	.quiz-card-title {
+	@media (width >= 1400px) {
 		font-size: 2.4rem;
 	}
+}
 
-	.quiz-card-description {
+.quiz-card-description {
+	@media (width >= 1400px) {
 		font-size: 2rem;
 	}
 }

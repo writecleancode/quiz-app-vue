@@ -39,21 +39,17 @@ defineProps({
 			translate: -100%;
 		}
 	}
+
+	@media (width >= 860px) {
+		font-size: 3.2rem;
+	}
+
+	@media (width >= 1200px) {
+		font-size: 4rem;
+	}
 }
 
 .purple-text {
 	color: #4a50dc;
-}
-
-@media (min-width: 860px) {
-	.h1 {
-		font-size: 3.2rem;
-	}
-}
-
-@media (min-width: 1200px) {
-	.h1 {
-		font-size: 4rem;
-	}
 }
 </style>

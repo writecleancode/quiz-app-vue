@@ -21,6 +21,16 @@ import AppNameTitle from '@/components/atoms/AppNameTitle.vue';
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
+
+	@media (width >= 400px) {
+		padding-left: 1.6rem;
+		padding-right: 1.6rem;
+	}
+
+	@media (width >= 1200px) {
+		padding-left: 2.4rem;
+		padding-right: 2.4rem;
+	}
 }
 
 .quiz-content-wrapper {
@@ -31,27 +41,13 @@ import AppNameTitle from '@/components/atoms/AppNameTitle.vue';
 	padding: 0.8rem;
 	max-width: max-content;
 	box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
-}
 
-@media (min-width: 400px) {
-	.quiz-wrapper {
-		padding-left: 1.6rem;
-		padding-right: 1.6rem;
-	}
-
-	.quiz-content-wrapper {
+	@media (width >= 400px) {
 		margin-bottom: 1.6rem;
 		padding: 1.6rem;
 	}
-}
 
-@media (min-width: 1200px) {
-	.quiz-wrapper {
-		padding-left: 2.4rem;
-		padding-right: 2.4rem;
-	}
-
-	.quiz-content-wrapper {
+	@media (width >= 1200px) {
 		margin-bottom: 2.4rem;
 		padding: 2.4rem;
 	}
