@@ -12,7 +12,7 @@ import { questionsData as quizData } from '@/data/drivingLicense';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, ref } from 'vue';
 import { useModal } from '@/composables/useModal';
-import cloneDeep from 'lodash.clonedeep';
+import { getQuizDrivingLicense } from '@/services/QuizEvent';
 
 const maxScore = quizData.length;
 
@@ -55,8 +55,17 @@ const showCorrectAnswers = () => {
 	}
 };
 
+const getQuizData = async () => {
+	try {
+		const response = await getQuizDrivingLicense()
+		if (response?.data?.length) questionsData.value = response.data
+	} catch (err) {
+		console.log(err);
+	}
+}
+
 onMounted(() => {
-	questionsData.value = cloneDeep(quizData);
+	getQuizData()
 });
 </script>
 

@@ -1,11 +1,26 @@
 <script setup lang="ts">
 import QuizCard from '@/components/molecules/QuizCard.vue';
 
-import { quizzes } from '@/data/quizzes';
+import type { QuizDataType } from '@/types/types';
+import { getQuizzesData } from '@/services/QuizEvent';
+import { onMounted, ref } from 'vue';
+
+const quizzes = ref<QuizDataType[]>([])
+
+const getQuizzes = async () => {
+	try {
+		const response = await getQuizzesData()
+		if (response?.data?.length) quizzes.value = response.data
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+onMounted(() => getQuizzes())
 </script>
 
 <template>
-	<div class="quiz-cards-wrapper">
+	<div v-if="quizzes.length" class="quiz-cards-wrapper">
 		<p class="quiz-cards-title">Wybierz quiz:</p>
 		<div class="cards-wrapper">
 			<QuizCard v-for="quiz in quizzes" :quiz :key="quiz.title" />

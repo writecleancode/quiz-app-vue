@@ -12,7 +12,7 @@ import { questionsData as quizData } from '@/data/knowledgeOfMovies';
 import { computed, onMounted, ref, watch } from 'vue';
 import { basePath } from '@/utils/base-path';
 import { useModal } from '@/composables/useModal';
-import cloneDeep from 'lodash.clonedeep';
+import { getQuizKnowledgeOfMovies } from '@/services/QuizEvent';
 
 const initialFormValues: Record<string, string> = {
 	answer1: '',
@@ -63,8 +63,17 @@ const showCorrectAnswers = () => {
 	questionsData.value[questionIndex.value].hasUserAnswered = true;
 };
 
+const getQuizData = async () => {
+	try {
+		const response = await getQuizKnowledgeOfMovies()
+		if (response?.data?.length) questionsData.value = response.data
+	} catch (err) {
+		console.log(err);
+	}
+}
+
 onMounted(() => {
-	questionsData.value = cloneDeep(quizData);
+	getQuizData()
 });
 
 watch(

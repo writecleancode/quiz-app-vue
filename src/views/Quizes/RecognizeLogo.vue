@@ -12,7 +12,7 @@ import { quizzes } from '@/data/quizzes';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
-import cloneDeep from 'lodash.clonedeep';
+import { getQuizRecognizeLogo } from '@/services/QuizEvent';
 
 const maxScore = quizData.length;
 
@@ -52,8 +52,17 @@ const handleChangeQuestion = (direction: string) => {
 	}
 };
 
+const getQuizData = async () => {
+	try {
+		const response = await getQuizRecognizeLogo()
+		if (response?.data?.length) questionsData.value = response.data
+	} catch (err) {
+		console.log(err);
+	}	
+}
+
 onMounted(() => {
-	questionsData.value = cloneDeep(quizData);
+	getQuizData()
 });
 
 watch(userScore, () => {

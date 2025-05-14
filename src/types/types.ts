@@ -37,3 +37,10 @@ export type RecognizeLogoQuestionDataType = {
 		isCorrectAnswer: boolean;
 	}[];
 };
+
+export type QuizDataType = {
+	title: string,
+	description: string,
+	backgroundURL: string,
+	path: string
+}
