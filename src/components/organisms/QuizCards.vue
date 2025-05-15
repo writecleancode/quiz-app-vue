@@ -2,7 +2,7 @@
 import QuizCard from '@/components/molecules/QuizCard.vue';
 
 import type { QuizDataType } from '@/types/types';
-import { getQuizzesData } from '@/services/QuizEvent';
+import { getQuizzesData } from '@/services/QuizService';
 import { onMounted, ref } from 'vue';
 
 const quizzes = ref<QuizDataType[]>([])

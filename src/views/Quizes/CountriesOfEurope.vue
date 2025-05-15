@@ -10,7 +10,7 @@ import { quizzes } from '@/data/quizzes';
 import { countriesList as quizData } from '@/data/coutriesOfEurope';
 import { onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
-import { getCountriesList } from '@/services/QuizEvent';
+import { getCountriesList } from '@/services/QuizService';
 
 const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds

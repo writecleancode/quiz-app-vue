@@ -12,7 +12,7 @@ import { questionsData as quizData } from '@/data/knowledgeOfMovies';
 import { computed, onMounted, ref, watch } from 'vue';
 import { basePath } from '@/utils/base-path';
 import { useModal } from '@/composables/useModal';
-import { getQuizKnowledgeOfMovies } from '@/services/QuizEvent';
+import { getQuizKnowledgeOfMovies } from '@/services/QuizService';
 
 const initialFormValues: Record<string, string> = {
 	answer1: '',
@@ -66,7 +66,7 @@ const showCorrectAnswers = () => {
 const getQuizData = async () => {
 	try {
 		const response = await getQuizKnowledgeOfMovies()
-		if (response?.data?.length) questionsData.value = response.data
+		if (response?.data?.[0].questionsData.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);
 	}

@@ -12,7 +12,7 @@ import { quizzes } from '@/data/quizzes';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
-import { getQuizRecognizeLogo } from '@/services/QuizEvent';
+import { getQuizRecognizeLogo } from '@/services/QuizService';
 
 const maxScore = quizData.length;
 
@@ -55,7 +55,7 @@ const handleChangeQuestion = (direction: string) => {
 const getQuizData = async () => {
 	try {
 		const response = await getQuizRecognizeLogo()
-		if (response?.data?.length) questionsData.value = response.data
+		if (response?.data?.[0].questionsData?.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);
 	}	

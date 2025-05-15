@@ -79,7 +79,7 @@
             ]
         },
         {
-            "path": "rozpoznaj-logo",
+            "path": "prawo-jazdy",
             "name": "drivingLicense",
             "questionsData": [
                 {
@@ -637,7 +637,7 @@
             ]
         },
         {
-            "path": "prawo-jazdy",
+            "path": "rozpoznaj-logo",
             "name": "recognizeLogo",
             "questionsData": [
                 {
