@@ -8,18 +8,17 @@ import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
 import type { DrivingLicenseQuestionDataType } from '@/types/types';
 import { quizzes } from '@/data/quizzes';
-import { questionsData as quizData } from '@/data/drivingLicense';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, ref } from 'vue';
 import { useModal } from '@/composables/useModal';
-import { getQuizDrivingLicense } from '@/services/QuizService';
-
-const maxScore = quizData.length;
+import { getQuizData } from '@/services/QuizService';
+import { getPath } from '@/helpers/path';
 
 // setup():
 const questionsData = ref<DrivingLicenseQuestionDataType[]>([]);
 const questionIndex = ref(0);
 const userScore = ref(0);
+const maxScore = computed(() => questionsData.value.length);
 const isFirstQuestion = computed(() => questionIndex.value <= 0);
 const isLastQuestion = computed(() => questionIndex.value >= questionsData.value.length - 1);
 const { isModalOpen, handleOpenModal, closeModal } = useModal();
@@ -55,9 +54,9 @@ const showCorrectAnswers = () => {
 	}
 };
 
-const getQuizData = async () => {
+const getQuiz = async () => {
 	try {
-		const response = await getQuizDrivingLicense()
+		const response = await getQuizData(getPath())
 		if (response?.data?.[0].questionsData.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);
@@ -65,7 +64,7 @@ const getQuizData = async () => {
 }
 
 onMounted(() => {
-	getQuizData()
+	getQuiz()
 });
 </script>
 

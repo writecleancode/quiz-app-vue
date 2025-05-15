@@ -10,7 +10,8 @@ import { quizzes } from '@/data/quizzes';
 import { countriesList as quizData } from '@/data/coutriesOfEurope';
 import { onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
-import { getCountriesList } from '@/services/QuizService';
+import { getQuizData } from '@/services/QuizService';
+import { getPath } from '@/helpers/path';
 
 const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds
@@ -82,7 +83,7 @@ const toggleMapVisibility = () => {
 
 const getCountriesListData = async () => {
 	try {
-		const response = await getCountriesList()
+		const response = await getQuizData(getPath())
 		if (response?.data?.length) countriesList.value = response.data
 	} catch (err) {
 		console.log(err);

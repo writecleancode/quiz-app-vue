@@ -7,14 +7,12 @@ import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import ScoreModal from '@/components/molecules/ScoreModal.vue';
 
 import type { RecognizeLogoQuestionDataType } from '@/types/types';
-import { questionsData as quizData } from '@/data/recognizeLogo';
 import { quizzes } from '@/data/quizzes';
 import { basePath } from '@/utils/base-path';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
-import { getQuizRecognizeLogo } from '@/services/QuizService';
-
-const maxScore = quizData.length;
+import { getQuizData } from '@/services/QuizService';
+import { getPath } from '@/helpers/path';
 
 // setup():
 const questionsData = ref<RecognizeLogoQuestionDataType[]>([]);
@@ -22,6 +20,7 @@ const questionIndex = ref(0);
 const givenAnswersIndexes = ref<number[]>([]);
 const isQuizFinished = ref(false);
 const userScore = ref(0);
+const maxScore = computed(() => questionsData.value.length);
 const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
 const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
 const { isModalOpen, handleOpenModal, closeModal } = useModal();
@@ -52,9 +51,9 @@ const handleChangeQuestion = (direction: string) => {
 	}
 };
 
-const getQuizData = async () => {
+const getQuiz = async () => {
 	try {
-		const response = await getQuizRecognizeLogo()
+		const response = await getQuizData(getPath())
 		if (response?.data?.[0].questionsData?.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);
@@ -62,11 +61,11 @@ const getQuizData = async () => {
 }
 
 onMounted(() => {
-	getQuizData()
+	getQuiz()
 });
 
 watch(userScore, () => {
-	if (userScore.value >= maxScore) handleFinishQuiz();
+	if (userScore.value >= maxScore.value) handleFinishQuiz();
 });
 </script>
 

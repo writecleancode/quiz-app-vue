@@ -12,7 +12,8 @@ import { questionsData as quizData } from '@/data/knowledgeOfMovies';
 import { computed, onMounted, ref, watch } from 'vue';
 import { basePath } from '@/utils/base-path';
 import { useModal } from '@/composables/useModal';
-import { getQuizKnowledgeOfMovies } from '@/services/QuizService';
+import { getQuizData } from '@/services/QuizService';
+import { getPath } from '@/helpers/path';
 
 const initialFormValues: Record<string, string> = {
 	answer1: '',
@@ -22,13 +23,12 @@ const initialFormValues: Record<string, string> = {
 	answer5: '',
 };
 
-const maxScore = quizData.reduce((accumulator, currentMovie) => accumulator + currentMovie.answersData.length, 0);
-
 // setup():
 const questionsData = ref<KnowledgeOfMoviesQuestionDataType[]>([]);
 const questionIndex = ref(0);
 const inputValues = ref(initialFormValues);
 const userScore = ref(0);
+const maxScore = computed(() => questionsData.value.reduce((accumulator, currentMovie) => accumulator + currentMovie.answersData.length, 0))
 const isFirstQuestion = computed(() => (questionIndex.value <= 0 ? true : false));
 const isLastQuestion = computed(() => (questionIndex.value >= questionsData.value.length - 1 ? true : false));
 const { isModalOpen, handleOpenModal, closeModal } = useModal();
@@ -63,9 +63,9 @@ const showCorrectAnswers = () => {
 	questionsData.value[questionIndex.value].hasUserAnswered = true;
 };
 
-const getQuizData = async () => {
+const getQuiz = async () => {
 	try {
-		const response = await getQuizKnowledgeOfMovies()
+		const response = await getQuizData(getPath())
 		if (response?.data?.[0].questionsData.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);
@@ -73,7 +73,7 @@ const getQuizData = async () => {
 }
 
 onMounted(() => {
-	getQuizData()
+	getQuiz()
 });
 
 watch(
@@ -91,7 +91,7 @@ watch(
 );
 
 watch(userScore, () => {
-	if (userScore.value >= maxScore) handleOpenModal();
+	if (userScore.value >= maxScore.value) handleOpenModal();
 });
 </script>
 

@@ -8,18 +8,6 @@ export const getQuizzesData = () => {
     return apiClient.get('/quizzes')
 }
 
-export const getCountriesList = async () => {
-    return await apiClient.get('/quizzesData?path=panstwa-europy')
-}
-
-export const getQuizDrivingLicense = () => {
-    return apiClient.get('/quizzesData?path=prawo-jazdy')
-}
-
-export const getQuizKnowledgeOfMovies = () => {
-    return apiClient.get('/quizzesData?path=znajomosc-filmow')
-}
-
-export const getQuizRecognizeLogo = () => {
-    return apiClient('/quizzesData?path=rozpoznaj-logo')
+export const getQuizData = async (quizPath: string) => {
+    return await apiClient.get(`/quizzesData?path=${quizPath}`)
 }
