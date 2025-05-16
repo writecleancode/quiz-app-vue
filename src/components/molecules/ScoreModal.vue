@@ -29,7 +29,7 @@ defineProps({
 				<p class="score-title">Twój wynik</p>
 				<p class="score-text">{{ userScore }} / {{ totalScore }}</p>
 				<div class="buttons-wrapper">
-					<RouterLink :to="`${basePath}/`" class="back-btn" aria-label="Powrót do wyboru quizów" id="go-back-btn">
+					<RouterLink :to="{ name: 'main-view' }" class="back-btn" aria-label="Powrót do wyboru quizów" id="go-back-btn">
 						<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
 						<span class="back-btn__text}">Powrót</span>
 					</RouterLink>

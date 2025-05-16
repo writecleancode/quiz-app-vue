@@ -15,7 +15,7 @@ defineProps({
 
 <template>
 	<div class="quiz-header-wrapper">
-		<RouterLink to="/" class="back-btn" aria-label="Powrót do wyboru quizów">
+		<RouterLink :to="{ name: 'main-view'}" class="back-btn" aria-label="Powrót do wyboru quizów">
 			<img :src="`${basePath}/icons/arrow-double-left.svg`" alt="" />
 			<span class="back-btn__text">Powrót</span>
 		</RouterLink>

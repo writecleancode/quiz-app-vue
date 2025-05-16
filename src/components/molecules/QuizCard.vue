@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-	<RouterLink :to="`/quiz/${quiz.path}`" class="quiz-card-wrapper" :style="{ backgroundImage: `url('${basePath}/${quiz.backgroundURL}')` }">
+	<RouterLink :to="{ name: quiz.routerName }" class="quiz-card-wrapper" :style="{ backgroundImage: `url('${basePath}/${quiz.backgroundURL}')` }">
 		<p class="quiz-card-title">{{ quiz.title }}</p>
 		<p class="quiz-card-description">{{ quiz.description }}</p>
 	</RouterLink>

@@ -54,6 +54,7 @@ const handleChangeQuestion = (direction: string) => {
 const getQuiz = async () => {
 	try {
 		const response = await getQuizData(getPath())
+		console.log(response);
 		if (response?.data?.[0].questionsData?.length) questionsData.value = response.data[0].questionsData
 	} catch (err) {
 		console.log(err);

@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-	<RouterLink to="/">
+	<RouterLink :to="{ name: 'main-view' }">
 		<h1 class="h1" :class="{ 'hover-effect': hasHoverEffect }" title="Powrót do wyboru quizów">
 			<span class="purple-text">Quiz</span><span>App</span>
 		</h1>

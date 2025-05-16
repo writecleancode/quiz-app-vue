@@ -9,11 +9,11 @@ import DrivingLicense from '@/views/Quizes/DrivingLicense.vue';
 const basePath = import.meta.env.VITE_BASE_PATH;
 
 const routes = [
-	{ path: '/', component: MainView },
-	{ path: '/quiz/panstwa-europy', component: CountriesOfEurope },
-	{ path: '/quiz/rozpoznaj-logo', component: RecognizeLogo },
-	{ path: '/quiz/znajomosc-filmow', component: KnowledgeOfMovies },
-	{ path: '/quiz/prawo-jazdy', component: DrivingLicense },
+	{ path: '/', name: 'main-view', component: MainView },
+	{ path: '/quiz/panstwa-europy', name: 'countries-of-europe', component: CountriesOfEurope },
+	{ path: '/quiz/rozpoznaj-logo', name: 'recognize-logo', component: RecognizeLogo },
+	{ path: '/quiz/znajomosc-filmow', name: 'knowledge-of-movies', component: KnowledgeOfMovies },
+	{ path: '/quiz/prawo-jazdy', name: 'driving-license', component: DrivingLicense },
 	{ path: '/:pathPatch(.*)*', redirect: '/' },
 ];
 

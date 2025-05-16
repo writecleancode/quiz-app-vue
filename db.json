@@ -4,25 +4,25 @@
             "title": "Państwa Europy",
             "description": "wymień jak najwięcej krajów europejskich w 2 minuty",
             "backgroundURL": "img/quiz1.jpg",
-            "path": "panstwa-europy"
+            "routerName": "countries-of-europe"
         },
         {
             "title": "Rozpoznaj logo",
             "description": "rozpoznaj firmę po zdjęciu logotypu",
             "backgroundURL": "img/quiz2.jpg",
-            "path": "rozpoznaj-logo"
+            "routerName": "recognize-logo"
         },
         {
             "title": "Znajomość filmów",
             "description": "uzupełnij brakujące informacje o popularnych filmach",
             "backgroundURL": "img/quiz3.jpg",
-            "path": "znajomosc-filmow"
+            "routerName": "knowledge-of-movies"
         },
         {
             "title": "Prawo jazdy",
             "description": "sprawdź, jak dobrze pamiętasz przepisy ruchu drogowego",
             "backgroundURL": "img/quiz4.jpg",
-            "path": "prawo-jazdy"
+            "routerName": "driving-license"
         }
     ],
     "quizzesData": [
